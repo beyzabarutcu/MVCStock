@@ -1,0 +1,37 @@
+﻿@model MVCStock.Models.Entity.Sales
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Sales</h2>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1"> Sell..</button>
+<div class="modal" id="Modal1"> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Sales Screen</h2>
+            </div>
+            <form method="post" action="/Sales/NewSale">
+                <div class="modal-body">
+                    <label>Product Name</label>
+                    @*<input type="text" name="Product" class="form-control" />*@
+                    @Html.TextBoxFor(m => m.Product, new { @class = "form-control" })
+                    <br />
+                    <label>Customer Name Surname</label>
+                    @Html.TextBoxFor(m => m.Customer, new { @class = "form-control" })
+                    <br />
+                    <label>Quantity</label>
+                    @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+                    <br />
+                    <label>Price</label>
+                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                    <br />
+                    <button type="submit" class="btn-info">Sell it</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@using MVCStock.Models.Entity
+@model List<Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>PRODUCTS</h2>
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product id</th>
+            <th>Product name</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.ProductID</th>
+                <td>@item.ProductName</td>
+                <td>@item.Brand</td>
+                <td>@item.Categories.CategoryName</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td><a href="/Product/Delete/@item.ProductID" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/Product/ProductFind/@item.ProductID" class="btn btn-info">UPDATE</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@*@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))*@
+<a href="/Product/Add" class="btn btn-success">ADD NEW PRODUCT</a>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+<script>
+    $('#tbl1').dataTable();
+</script>
